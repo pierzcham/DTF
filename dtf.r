@@ -1,6 +1,5 @@
 dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
     eeg <- as.matrix(eeg)
-    fsamp <- 512 # sampling freq, e.g. Hz
     B <- length(eeg[1,])
     N <- length(eeg[,1])
     eeg.ar <- ar(eeg)
