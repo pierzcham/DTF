@@ -64,7 +64,6 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
         S1 <- rep(0,(Nf+1))
     }
 
-
    
     f.length <- length(f)
     S <- Se00
@@ -90,12 +89,13 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
         par(mfrow=c(B,B),mar=c(0.1,0.1,0.1,0.1),...)
         for(i in 1:B){
             for(j in 1:B){
-                plot(nyfreqs,S[[i,j]],type='l',ylim=c(0,(2/(fsamp*N))),axes=FALSE)
+                plot(nyfreqs,S[[i,j]],type='l',ylim=c(0,1),axes=FALSE)
                 polygon(c(nyfreqs,rev(nyfreqs)),c(rep(0,length(S[[i,j]])),rev(S[[i,j]])),col="gray")
             }
         }
     }
-    S.f <- list("S"=S,"S.f1"=S.f1,"S.f2"=S.f2,"S.f3"=S.f3)
+                                        #S.f <- list("S"=S,"S.f1"=S.f1,"S.f2"=S.f2,"S.f3"=S.f3)
+    S.f <- list("S"=S)
     S.f
 }
 
