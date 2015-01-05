@@ -75,11 +75,11 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
             for(j in 1:B){
                 S.zoo <- zoo(S[[i,j]],nyfreqs)
                 S.zoo.f <- S.zoo[index(S.zoo)>=f[1]&index(S.zoo)<=f[2]]
-                S.f1[i,j] <- sum(coredata(S.zoo.f))
+                S.f1[i,j] <- sum(coredata(S.zoo.f))/length(coredata(S.zoo.f))
                 S.zoo.f <- S.zoo[index(S.zoo)>=f[3]&index(S.zoo)<=f[4]]
-                S.f2[i,j] <- sum(coredata(S.zoo.f))
+                S.f2[i,j] <- sum(coredata(S.zoo.f))/length(coredata(S.zoo.f))
                 S.zoo.f <- S.zoo[index(S.zoo)>=f[5]&index(S.zoo)<=f[6]]
-                S.f3[i,j] <- sum(coredata(S.zoo.f))
+                S.f3[i,j] <- sum(coredata(S.zoo.f))/length(coredata(S.zoo.f))
             }
         }
     }
