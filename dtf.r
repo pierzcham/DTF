@@ -17,13 +17,14 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
     }
 
     H <- list()
+    H0 <- list()
     temp=0
     for(i in 1:N){
         for(j in 1:p){
             temp <- temp + A[[j]]*s3[(j+1),i]
         }
-        H0 <- diag(B)*s3[1,i]-temp
-        H[i] <- list(solve(H0))
+        H0[i] <- list(diag(B)*s3[1,i]-temp)
+        H[i] <- list(solve(H0[[i]]))
         temp=0
     }
     
@@ -46,7 +47,6 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
         for(j in 1:B){
             X <- H00[[i,j]][1:(Nf+1)]# transformata jest symetryczna 
             Sa <- Mod(X) # Amplitude spectrum
-            Sp <- Arg(X) # Phase spectrum
             Se <- 1/(fsamp*N)*Sa^2
             Se[2:Nf] <- Se[2:Nf]*2 
             Se00[i,j] <- list(Se)
@@ -82,9 +82,12 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
                 S.f3[i,j] <- sum(coredata(S.zoo.f))/length(coredata(S.zoo.f))
             }
         }
+        S.f <- list("S.f1"=S.f1,"S.f2"=S.f2,"S.f3"=S.f3)    
+    }
+    else{
+        S.f <- list("S"=S)
     }
 
-      
     if(plot){
         par(mfrow=c(B,B),mar=c(0.1,0.1,0.1,0.1),...)
         for(i in 1:B){
@@ -94,7 +97,6 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
             }
         }
     }
-    S.f <- list("S"=S,"S.f1"=S.f1,"S.f2"=S.f2,"S.f3"=S.f3)
     S.f
 }
 
