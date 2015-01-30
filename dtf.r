@@ -94,8 +94,7 @@ dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
             }
         }
     }
-                                        #S.f <- list("S"=S,"S.f1"=S.f1,"S.f2"=S.f2,"S.f3"=S.f3)
-    S.f <- list("S"=S)
+    S.f <- list("S"=S,"S.f1"=S.f1,"S.f2"=S.f2,"S.f3"=S.f3)
     S.f
 }
 
