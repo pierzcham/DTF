@@ -1,3 +1,4 @@
+#test
 dtf <- function(eeg,fsamp,plot=FALSE,f=0,...) {
     eeg <- as.matrix(eeg)
     B <- length(eeg[1,])
